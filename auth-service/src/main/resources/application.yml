@@ -1,0 +1,27 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: auth-service
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/authdb}
+    username: ${SPRING_DATASOURCE_USERNAME:auth}
+    password: ${SPRING_DATASOURCE_PASSWORD:auth}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
+  sql:
+    init:
+      mode: always
+
+app:
+  jwt:
+    secret: ${APP_JWT_SECRET:dGhpcy1pcy1hLXZlcnktc2VjdXJlLWtleS13aXRoLWF0LWxlYXN0LTMyLWJ5dGVzLWxvbmch}
+    access-expiration-ms: ${APP_JWT_ACCESS_EXPIRATION:900000}       # 15 mins
+    refresh-expiration-ms: ${APP_JWT_REFRESH_EXPIRATION:604800000}   # 7 days

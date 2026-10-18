@@ -53,7 +53,7 @@ public class ProductController {
         productService.deleteProduct(id);
     }
 
-    @PatchMapping("/{id}/stock")
+    @RequestMapping(value = "/{id}/stock", method = {RequestMethod.PATCH, RequestMethod.PUT})
     @ResponseStatus(HttpStatus.OK)
     public void updateStock(
             @PathVariable UUID id,

@@ -180,3 +180,48 @@ mvn test
 - Модульные тесты `order-service` (синхронный Feign, откат транзакций, отправка событий Kafka)
 - Интеграционный тест `notification-service` с `@EmbeddedKafka`
 - Реактивные фильтры `api-gateway`
+
+---
+
+## 💻 Веб-интерфейс (Frontend SPA)
+
+Для демонстрации проекта в портфолио реализован современный SPA интерфейс на **React 19 / TypeScript / Tailwind CSS / Lucide React**.
+
+```
+HTTP Клиент (React SPA :3000)
+             │
+             ▼
+     API Gateway :8080 (Маршрутизация + Валидация JWT)
+```
+
+### Запуск фронтенда:
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Интерфейс будет доступен по адресу **`http://localhost:3000`**.
+
+### Ключевые возможности интерфейса:
+1. **Каталог товаров и остатки (Stock):**
+   - Динамические бейджи наличия (`В наличии`, `Осталось мало`, `Нет на складе`).
+   - Фильтрация по категориям (`Laptops`, `Accessories`, `Monitors`, `Audio`), поиск и сортировка.
+2. **Оформление заказа (Оркестрация):**
+   - Выдвижная корзина (Slide-over drawer).
+   - Оформление заказа вызывает цепочку: `API Gateway` $\rightarrow$ `Order Service` $\rightarrow$ синхронный `Feign` к `Product Service` $\rightarrow$ публикация `OrderCreatedEvent` в `Kafka`.
+   - Грациозная обработка ошибки `409 Conflict (Out of Stock)`.
+3. **Личный кабинет покупателя:**
+   - История заказов (`GET /api/orders`) со снапшотом цен на момент покупки.
+   - 4-шаговый визуальный таймлайн статусов: `PENDING` $\rightarrow$ `CONFIRMED` $\rightarrow$ `SHIPPED` $\rightarrow$ `DELIVERED`.
+   - Возможность отмены активного заказа (`DELETE /api/orders/{id}`).
+4. **Панель Администратора (`ROLE_ADMIN`):**
+   - Каталог товаров: создание (`POST /api/products`), редактирование, удаление, изменение остатка.
+   - Заказы: смена статуса заказа (`PATCH /api/orders/{id}/status`).
+5. **Interactive Architecture Trace (Dev Inspector):**
+   - Выдвижная панель **Trace Live**, визуализирующая каждый HTTP/Feign/Kafka шаг в реальном времени с измерением задержки.
+6. **Быстрые демо-аккаунты в 1 клик:**
+   - Кнопки быстрого входа для интервьюера/рекрутера: `Demo User` (`testuser`) и `Demo Admin` (`admin`).
+   - Поддержка **автономного офлайн демо-режима** (витрина и симуляция работают даже без запущенного Docker Compose).
+

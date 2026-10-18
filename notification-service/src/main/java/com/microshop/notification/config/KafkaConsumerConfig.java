@@ -27,6 +27,7 @@ public class KafkaConsumerConfig {
         JsonDeserializer<OrderCreatedEvent> deserializer =
                 new JsonDeserializer<>(OrderCreatedEvent.class);
         deserializer.addTrustedPackages("*");
+        deserializer.setUseTypeHeaders(false);
         deserializer.setRemoveTypeHeaders(true);
         deserializer.setUseTypeMapperForKey(false);
 

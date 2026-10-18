@@ -14,6 +14,6 @@ CREATE TABLE IF NOT EXISTS users (
 -- Password for both users is: password123
 INSERT INTO users (id, username, email, password_hash, role)
 VALUES 
-    ('a0000000-0000-0000-0000-000000000001', 'admin', 'admin@shop.local', '$2a$10$7EqJtq98hPqEX7fNZaFWoO.8N6b86t1WbM0tW12b0h79.03gP0NKy', 'ROLE_ADMIN'),
-    ('a0000000-0000-0000-0000-000000000002', 'testuser', 'testuser@shop.local', '$2a$10$7EqJtq98hPqEX7fNZaFWoO.8N6b86t1WbM0tW12b0h79.03gP0NKy', 'ROLE_USER')
+    ('a0000000-0000-0000-0000-000000000001', 'admin', 'admin@shop.local', '$2a$10$JXLUXbA0bMbOGYTxOaf9meHsml.t5j9ZwuiXGhYfRodtRPA7aKnVC', 'ROLE_ADMIN'),
+    ('a0000000-0000-0000-0000-000000000002', 'testuser', 'testuser@shop.local', '$2a$10$JXLUXbA0bMbOGYTxOaf9meHsml.t5j9ZwuiXGhYfRodtRPA7aKnVC', 'ROLE_USER')
 ON CONFLICT (username) DO NOTHING;

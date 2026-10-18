@@ -47,3 +47,9 @@ bin/
 Thumbs.db
 # Specifications and TZ files
 microservices_shop_tz.md
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.local
+

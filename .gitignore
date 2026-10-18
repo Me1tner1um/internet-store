@@ -45,3 +45,5 @@ bin/
 # OS files
 .DS_Store
 Thumbs.db
+# Specifications and TZ files
+microservices_shop_tz.md
